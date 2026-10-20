@@ -2,10 +2,11 @@ import { AtSign, MapPin, MessageCircle, Music2 } from 'lucide-react'
 import { navLinks, site, whatsappUrl } from '@/lib/site'
 
 const contacts = [
-  { icon: MapPin, label: 'Location', value: `${site.location} (exact address on booking)`, href: undefined },
-  { icon: AtSign, label: 'Instagram', value: site.instagram.handle, href: site.instagram.url },
+  { icon: MapPin, label: 'Location', value: `${site.location} (exact address on booking)`, href: undefined, wide: true },
+  { icon: AtSign, label: 'Studio Instagram', value: site.instagram.handle, href: site.instagram.url },
+  { icon: AtSign, label: 'Andrea on Instagram', value: site.personalInstagram.handle, href: site.personalInstagram.url },
   { icon: Music2, label: 'TikTok', value: site.tiktok.handle, href: site.tiktok.url },
-  { icon: MessageCircle, label: 'WhatsApp', value: 'Chat with us', href: whatsappUrl },
+  { icon: MessageCircle, label: 'WhatsApp', value: site.whatsappDisplay, href: whatsappUrl },
 ]
 
 export function SiteFooter() {
@@ -34,7 +35,7 @@ export function SiteFooter() {
           </div>
 
           <ul className="grid gap-px overflow-hidden rounded-3xl border border-border bg-border sm:grid-cols-2">
-            {contacts.map(({ icon: Icon, label, value, href }) => {
+            {contacts.map(({ icon: Icon, label, value, href, wide }) => {
               const content = (
                 <>
                   <Icon className="size-5 text-gold" aria-hidden="true" />
@@ -45,7 +46,7 @@ export function SiteFooter() {
                 </>
               )
               return (
-                <li key={label} className="bg-card">
+                <li key={label} className={wide ? 'bg-card sm:col-span-2' : 'bg-card'}>
                   {href ? (
                     <a
                       href={href}
